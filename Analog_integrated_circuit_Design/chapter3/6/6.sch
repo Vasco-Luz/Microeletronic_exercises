@@ -5,6 +5,8 @@ K {}
 V {}
 S {}
 E {}
+T {By adding a resistance , an overdrive is being added, but it is risky in other aspects
+IREF*R should always be lower the for the lower possible vth of the primitive used} 70 -280 0 0 0.4 0.4 {}
 N -120 200 -120 220 {
 lab=GND}
 N -120 100 -120 140 {
@@ -43,6 +45,36 @@ N 380 20 380 240 {
 lab=VT}
 N 380 240 380 250 {
 lab=VT}
+N 490 680 490 750 {
+lab=#net3}
+N 490 570 490 620 {
+lab=VIN}
+N 490 750 490 770 {
+lab=#net3}
+N 340 800 450 800 {
+lab=VT1}
+N 300 830 300 860 {
+lab=GND}
+N 300 800 300 830 {
+lab=GND}
+N 490 800 490 830 {
+lab=GND}
+N 490 830 490 860 {
+lab=GND}
+N 300 410 300 440 {
+lab=VDD}
+N 300 500 300 600 {
+lab=VT1}
+N 300 660 300 770 {
+lab=VT1}
+N 300 570 380 570 {
+lab=VT1}
+N 380 570 380 790 {
+lab=VT1}
+N 380 790 380 800 {
+lab=VT1}
+N 300 600 300 660 {
+lab=VT1}
 C {sky130_fd_pr/corner.sym} -240 -100 0 0 {name=CORNER only_toplevel=true corner=tt}
 C {devices/code.sym} -100 -100 0 0 {name=spice only_toplevel=false
 format="tcleval( @value )"
@@ -89,9 +121,9 @@ value="
 save all
 dc V2 0 1.8 0.001 
 *dc simulation
-plot i(Vmeas) 
-plot v(VT) 
-plot 1/deriv(i(Vmeas))
+plot i(Vmeas) i(Vmeas1)
+plot v(VT) v(VT1)
+plot 1/deriv(i(Vmeas)) 1/deriv(i(Vmeas1))
 .endc
 "}
 C {devices/lab_pin.sym} -120 110 0 0 {name=p6 sig_type=std_logic lab=VDD}
@@ -130,4 +162,27 @@ spiceprefix=X
 C {devices/lab_pin.sym} -40 110 0 0 {name=p3 sig_type=std_logic lab=VIN
 }
 C {devices/lab_pin.sym} 380 140 0 0 {name=p4 sig_type=std_logic lab=VT
+}
+C {devices/ammeter.sym} 490 650 0 0 {name=Vmeas1}
+C {devices/lab_pin.sym} 490 570 1 0 {name=p5 sig_type=std_logic lab=VIN
+}
+C {sky130_fd_pr/nfet_01v8.sym} 320 800 0 1 {name=M3
+L=0.4
+W=5
+nf=2 mult=2
+model=nfet_01v8
+spiceprefix=X
+}
+C {devices/gnd.sym} 300 860 0 0 {name=l4 lab=GND}
+C {devices/gnd.sym} 490 860 0 0 {name=l6 lab=GND}
+C {devices/isource.sym} 300 470 0 0 {name=I1 value=100u}
+C {devices/lab_pin.sym} 300 410 0 0 {name=p7 sig_type=std_logic lab=VDD}
+C {sky130_fd_pr/nfet_01v8.sym} 470 800 0 0 {name=M4
+L=0.4
+W=5
+nf=2 mult=2
+model=nfet_01v8
+spiceprefix=X
+}
+C {devices/lab_pin.sym} 380 690 0 0 {name=p8 sig_type=std_logic lab=VT1
 }

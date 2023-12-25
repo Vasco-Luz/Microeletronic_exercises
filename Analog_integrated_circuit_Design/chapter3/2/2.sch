@@ -5,6 +5,9 @@ K {}
 V {}
 S {}
 E {}
+T {To show that when Vt =Vx
+IOUT = IREF * factor
+factor =1 in this case} 330 -140 0 0 0.4 0.4 {}
 N -120 200 -120 220 {
 lab=GND}
 N -120 100 -120 140 {

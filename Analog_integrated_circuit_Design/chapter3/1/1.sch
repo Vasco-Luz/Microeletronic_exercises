@@ -5,6 +5,8 @@ K {}
 V {}
 S {}
 E {}
+T {Basic Nmos current
+Ratio 4:1} 300 -100 0 0 0.4 0.4 {}
 N -120 200 -120 220 {
 lab=GND}
 N -120 100 -120 140 {
