@@ -5,10 +5,8 @@ K {}
 V {}
 S {}
 E {}
-T {To show that when Vt =Vx
-IOUT = IREF * factor
-factor =1 in this case} 330 -140 0 0 0.4 0.4 {}
-T {exercise 3.2} 20 -150 0 0 0.4 0.4 {}
+T {Basic common source amplifier} 100 -40 0 0 0.4 0.4 {}
+T {Exercise 3.8} 110 -110 0 0 0.4 0.4 {}
 N -120 200 -120 220 {
 lab=GND}
 N -120 100 -120 140 {
@@ -19,34 +17,34 @@ N -40 100 -40 140 {
 lab=VIN}
 N -40 220 -40 240 {
 lab=GND}
-N 490 130 490 200 {
-lab=#net1}
-N 490 20 490 70 {
-lab=VIN}
-N 490 200 490 220 {
-lab=#net1}
-N 340 250 450 250 {
-lab=VT}
-N 300 170 300 220 {
-lab=VT}
-N 300 170 300 200 {
-lab=VT}
-N 300 200 380 200 {
-lab=VT}
-N 380 200 380 250 {
-lab=VT}
-N 300 280 300 310 {
-lab=GND}
-N 300 250 300 280 {
-lab=GND}
-N 490 250 490 280 {
-lab=GND}
-N 490 280 490 310 {
-lab=GND}
-N 300 70 300 170 {
-lab=VT}
-N 300 -20 300 10 {
+N 590 210 590 260 {
+lab=VOUT}
+N 290 120 290 150 {
 lab=VDD}
+N 290 150 290 180 {
+lab=VDD}
+N 290 210 290 290 {
+lab=#net1}
+N 330 180 330 220 {
+lab=#net1}
+N 290 220 330 220 {
+lab=#net1}
+N 590 120 590 150 {
+lab=VDD}
+N 590 150 590 180 {
+lab=VDD}
+N 290 350 290 420 {
+lab=GND}
+N 330 180 550 180 {
+lab=#net1}
+N 590 400 590 420 {
+lab=GND}
+N 590 370 590 400 {
+lab=GND}
+N 590 260 590 340 {
+lab=VOUT}
+N 490 370 550 370 {
+lab=VIN}
 C {sky130_fd_pr/corner.sym} -240 -100 0 0 {name=CORNER only_toplevel=true corner=tt}
 C {devices/code.sym} -100 -100 0 0 {name=spice only_toplevel=false
 format="tcleval( @value )"
@@ -93,9 +91,7 @@ value="
 save all
 dc V2 0 1.8 0.001 
 *dc simulation
-plot i(Vmeas) 
-plot v(VT) 
-plot 1/deriv(i(Vmeas))
+plot deriv(V(Vout)) v(VOUT)
 .endc
 "}
 C {devices/lab_pin.sym} -120 110 0 0 {name=p6 sig_type=std_logic lab=VDD}
@@ -104,28 +100,36 @@ C {devices/vsource.sym} -120 170 0 0 {name=V1 value=1.8
 }
 C {devices/vsource.sym} -40 170 0 0 {name=V2 value=0.9}
 C {devices/gnd.sym} -120 220 0 0 {name=l3 lab=GND}
-C {devices/lab_pin.sym} -40 110 0 0 {name=p7 sig_type=std_logic lab=VIN
-}
 C {devices/gnd.sym} -40 240 0 0 {name=l5 lab=GND}
-C {devices/ammeter.sym} 490 100 0 0 {name=Vmeas}
-C {devices/lab_pin.sym} 490 20 1 0 {name=p2 sig_type=std_logic lab=VIN
+C {devices/lab_pin.sym} 290 120 0 0 {name=p1 sig_type=std_logic lab=VDD}
+C {devices/lab_pin.sym} -40 110 0 0 {name=p3 sig_type=std_logic lab=VIN
 }
-C {sky130_fd_pr/nfet_01v8.sym} 320 250 0 1 {name=M1
+C {sky130_fd_pr/pfet_01v8.sym} 310 180 0 1 {name=M11
 L=0.4
-W=5
-nf=2 mult=1
+W=2
+nf=1 mult=5
+model=pfet_01v8
+spiceprefix=X
+}
+C {devices/lab_pin.sym} 590 120 0 0 {name=p4 sig_type=std_logic lab=VDD}
+C {devices/isource.sym} 290 320 0 0 {name=I0 value=100u}
+C {devices/gnd.sym} 290 420 0 0 {name=l1 lab=GND}
+C {sky130_fd_pr/pfet_01v8.sym} 570 180 0 0 {name=M1
+L=0.4
+W=2
+nf=1 mult=5
+model=pfet_01v8
+spiceprefix=X
+}
+C {sky130_fd_pr/nfet_01v8.sym} 570 370 0 0 {name=M2
+L=0.4
+W=2 
+nf=1 mult=5
 model=nfet_01v8
 spiceprefix=X
 }
-C {devices/gnd.sym} 300 310 0 0 {name=l1 lab=GND}
-C {devices/gnd.sym} 490 310 0 0 {name=l2 lab=GND}
-C {devices/isource.sym} 300 40 0 0 {name=I0 value=100u}
-C {devices/lab_pin.sym} 300 -20 0 0 {name=p1 sig_type=std_logic lab=VDD}
-C {sky130_fd_pr/nfet_01v8.sym} 470 250 0 0 {name=M2
-L=0.4
-W=5
-nf=2 mult=1
-model=nfet_01v8
-spiceprefix=X
+C {devices/gnd.sym} 590 420 0 0 {name=l2 lab=GND}
+C {devices/lab_pin.sym} 490 370 0 0 {name=p2 sig_type=std_logic lab=VIN
 }
-C {devices/lab_pin.sym} 300 130 0 0 {name=p3 sig_type=std_logic lab=VT}
+C {devices/lab_pin.sym} 590 270 0 0 {name=p5 sig_type=std_logic lab=VOUT
+}

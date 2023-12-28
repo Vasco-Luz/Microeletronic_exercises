@@ -7,6 +7,7 @@ S {}
 E {}
 T {increase L to minimize short channel effects
 and to increase output impedance of the current mirror} 50 -140 0 0 0.4 0.4 {}
+T {Exercise 5} 30 -210 0 0 0.4 0.4 {}
 N -120 200 -120 220 {
 lab=GND}
 N -120 100 -120 140 {

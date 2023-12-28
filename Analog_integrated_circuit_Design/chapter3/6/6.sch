@@ -7,6 +7,7 @@ S {}
 E {}
 T {By adding a resistance , an overdrive is being added, but it is risky in other aspects
 IREF*R should always be lower the for the lower possible vth of the primitive used} 70 -280 0 0 0.4 0.4 {}
+T {Exercise 6} 420 420 0 0 0.4 0.4 {}
 N -120 200 -120 220 {
 lab=GND}
 N -120 100 -120 140 {

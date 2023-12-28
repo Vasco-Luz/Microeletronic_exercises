@@ -7,6 +7,7 @@ S {}
 E {}
 T {minimum gate is very bad
 a lot of short channel effect and leakage} 200 -110 0 0 0.4 0.4 {}
+T {Exercise 3.4} 200 -230 0 0 0.4 0.4 {}
 N -120 200 -120 220 {
 lab=GND}
 N -120 100 -120 140 {

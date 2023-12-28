@@ -97,7 +97,6 @@ save all
 dc V2 0 1.8 0.001 
 *dc simulation
 plot i(Vmeas) i(Vmeas1)
-plot v(VT) v(VT1)
 plot 1/deriv(i(Vmeas)) 
 .endc
 "}

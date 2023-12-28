@@ -7,6 +7,7 @@ S {}
 E {}
 T {Basic Nmos current
 Ratio 4:1} 300 -100 0 0 0.4 0.4 {}
+T {exercise 3.1} -30 -200 0 0 0.4 0.4 {}
 N -120 200 -120 220 {
 lab=GND}
 N -120 100 -120 140 {
