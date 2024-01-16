@@ -10,18 +10,14 @@ T {Design steps:
 2- Design the PMOS so VEFF of the PMOS current mirror is lower then 250 mv (VT of that primitive is 0.55v)
 Job done
 3-size the input transistor so the peak gain is larguer then 5 V/v(increase the W)
+
+this is a bad amplifier but is the most basic one
 } 700 80 0 0 0.4 0.4 {}
 T {Exercise 3.10} 110 -110 0 0 0.4 0.4 {}
 N -120 200 -120 220 {
 lab=GND}
 N -120 100 -120 140 {
 lab=VDD}
-N -40 200 -40 220 {
-lab=GND}
-N -40 100 -40 140 {
-lab=VIN}
-N -40 220 -40 240 {
-lab=GND}
 N 590 210 590 260 {
 lab=VOUT}
 N 290 120 290 150 {
@@ -49,6 +45,14 @@ lab=GND}
 N 590 260 590 340 {
 lab=VOUT}
 N 490 370 550 370 {
+lab=VIN}
+N 80 470 80 490 {
+lab=GND}
+N 80 370 80 410 {
+lab=#net1}
+N 80 490 80 510 {
+lab=GND}
+N 80 280 80 310 {
 lab=VIN}
 C {sky130_fd_pr/corner.sym} -240 -100 0 0 {name=CORNER only_toplevel=true corner=tt}
 C {devices/code.sym} -100 -100 0 0 {name=spice only_toplevel=false
@@ -98,18 +102,16 @@ dc V2 0 1.8 0.001
 *dc simulation
 plot deriv(V(Vout)) v(VOUT)
 plot v(VT)
+ac dec 20 1 50G
+plot db(v(VOUT))
 .endc
 "}
 C {devices/lab_pin.sym} -120 110 0 0 {name=p6 sig_type=std_logic lab=VDD}
 C {devices/vsource.sym} -120 170 0 0 {name=V1 value=1.8
 
 }
-C {devices/vsource.sym} -40 170 0 0 {name=V2 value=0.9}
 C {devices/gnd.sym} -120 220 0 0 {name=l3 lab=GND}
-C {devices/gnd.sym} -40 240 0 0 {name=l5 lab=GND}
 C {devices/lab_pin.sym} 290 120 0 0 {name=p1 sig_type=std_logic lab=VDD}
-C {devices/lab_pin.sym} -40 110 0 0 {name=p3 sig_type=std_logic lab=VIN
-}
 C {sky130_fd_pr/pfet_01v8.sym} 310 180 0 1 {name=M11
 L=0.25
 W=2
@@ -141,3 +143,8 @@ C {devices/lab_pin.sym} 590 270 0 0 {name=p5 sig_type=std_logic lab=VOUT
 }
 C {devices/lab_pin.sym} 430 180 1 0 {name=p7 sig_type=std_logic lab=VT
 }
+C {devices/vsource.sym} 80 440 0 0 {name=V2 value=0.604}
+C {devices/gnd.sym} 80 510 0 0 {name=l4 lab=GND}
+C {devices/lab_pin.sym} 80 280 0 0 {name=p8 sig_type=std_logic lab=VIN
+}
+C {devices/vsource.sym} 80 340 0 0 {name=V4 value="ac 1.0 sin (0 10m 100k)"}

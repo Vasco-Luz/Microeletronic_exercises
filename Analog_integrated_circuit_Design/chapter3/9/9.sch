@@ -7,12 +7,9 @@ S {}
 E {}
 T {Basic common source amplifier} 100 -40 0 0 0.4 0.4 {}
 T {Exercise 3.8 and 3.9a} 110 -110 0 0 0.4 0.4 {}
-T {from the first simulation(dc characteristic), the vin in put range can be otained
-in thiscaser the vin range is aprox 20 mv from 790 to 810
-this because the gain is very high for this type of amplifier
-the dc gained obtained for the dc poit of 0.8035 is -48 this is obtaine from the dc simulation
-The gain is the derivation oif vout in function of vin, ussually this is the same as the low frequency ac gain
-} 750 90 0 0 0.4 0.4 {}
+T {Because the w and L was doubled, gm stayed the same, but the gain doubled
+this because of the lambda L factor, that is independent of w
+but as said the vin range diminuished and vout range diminuished too but the gain almost doubled} 750 90 0 0 0.4 0.4 {}
 N -120 200 -120 220 {
 lab=GND}
 N -120 100 -120 140 {
@@ -112,15 +109,15 @@ C {devices/lab_pin.sym} -120 110 0 0 {name=p6 sig_type=std_logic lab=VDD}
 C {devices/vsource.sym} -120 170 0 0 {name=V1 value=1.8
 
 }
-C {devices/vsource.sym} -50 480 0 0 {name=V2 value=0.8035}
+C {devices/vsource.sym} -50 480 0 0 {name=V2 value=0.7655}
 C {devices/gnd.sym} -120 220 0 0 {name=l3 lab=GND}
 C {devices/gnd.sym} -50 550 0 0 {name=l5 lab=GND}
 C {devices/lab_pin.sym} 290 120 0 0 {name=p1 sig_type=std_logic lab=VDD}
 C {devices/lab_pin.sym} -50 320 0 0 {name=p3 sig_type=std_logic lab=VIN
 }
 C {sky130_fd_pr/pfet_01v8.sym} 310 180 0 1 {name=M11
-L=0.4
-W=2
+L=0.8
+W=4
 nf=1 mult=5
 model=pfet_01v8
 spiceprefix=X
@@ -129,15 +126,15 @@ C {devices/lab_pin.sym} 590 120 0 0 {name=p4 sig_type=std_logic lab=VDD}
 C {devices/isource.sym} 290 320 0 0 {name=I0 value=100u}
 C {devices/gnd.sym} 290 420 0 0 {name=l1 lab=GND}
 C {sky130_fd_pr/pfet_01v8.sym} 570 180 0 0 {name=M1
-L=0.4
-W=2
+L=0.8
+W=4
 nf=1 mult=5
 model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8.sym} 570 370 0 0 {name=M2
-L=0.4
-W=2 
+L=0.8
+W=4
 nf=1 mult=5
 model=nfet_01v8
 spiceprefix=X
@@ -147,4 +144,4 @@ C {devices/lab_pin.sym} 490 370 0 0 {name=p2 sig_type=std_logic lab=VIN
 }
 C {devices/lab_pin.sym} 590 270 0 0 {name=p5 sig_type=std_logic lab=VOUT
 }
-C {devices/vsource.sym} -50 380 0 0 {name=V3 value="ac 1.0 sin (0 10m 100k)"}
+C {devices/vsource.sym} -50 380 0 0 {name=V3 value="ac 1.0 sin (0 5m 100k)"}
